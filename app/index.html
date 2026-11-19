@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice Cover Studio — GTA 6-style cover art maker</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">VC</span>
+    <div>
+      <h1>VICE COVER STUDIO</h1>
+      <p>Turn your photo into GTA 6-style poster cover art — offline, on your machine.</p>
+    </div>
+  </div>
+  <div class="top-actions">
+    <button id="btn-sample" type="button">Load sample scene</button>
+    <button id="btn-export" type="button" class="primary">Download PNG</button>
+  </div>
+</header>
+
+<main class="layout">
+  <section class="preview-col">
+    <div class="preview-wrap">
+      <canvas id="preview" width="1080" height="1080"></canvas>
+      <p class="preview-hint">Click a panel to select it · drag to move the photo · scroll to zoom</p>
+    </div>
+    <div class="panel-tabs" id="panel-tabs" role="tablist" aria-label="Panels"></div>
+  </section>
+
+  <aside class="controls">
+    <section class="card">
+      <h2>1 · Layout</h2>
+      <label class="row">Panels
+        <select id="sel-panels">
+          <option value="2">2 panels</option>
+          <option value="3" selected>3 panels</option>
+          <option value="4">4 panels</option>
+        </select>
+      </label>
+      <label class="row">Export size
+        <select id="sel-size">
+          <option value="1080x1080" selected>1080 × 1080 · square</option>
+          <option value="1080x1350">1080 × 1350 · portrait</option>
+          <option value="1920x1080">1920 × 1080 · wide</option>
+        </select>
+      </label>
+      <label class="row">Colour grade
+        <select id="sel-grade">
+          <option value="sunset" selected>Vice Sunset — orange / magenta</option>
+          <option value="neon">Neon Nights — cyan / magenta</option>
+          <option value="dusk">Palm Dusk — deep purple</option>
+        </select>
+      </label>
+    </section>
+
+    <section class="card">
+      <h2>2 · Photo</h2>
+      <p class="note">Photos are read on your machine and never uploaded anywhere.</p>
+      <label class="row check"><input type="checkbox" id="chk-one-photo" checked> Use one photo in every panel</label>
+      <div class="upload-row">
+        <label class="file-btn" for="file-photo">Choose photo…</label>
+        <input type="file" id="file-photo" accept="image/*" hidden>
+        <button id="btn-clear-photo" type="button">Clear</button>
+      </div>
+      <label class="row">Zoom <input type="range" id="rng-zoom" min="0.6" max="3" step="0.01" value="1"></label>
+      <label class="row">Move X <input type="range" id="rng-x" min="-0.5" max="0.5" step="0.01" value="0"></label>
+      <label class="row">Move Y <input type="range" id="rng-y" min="-0.5" max="0.5" step="0.01" value="0"></label>
+    </section>
+
+    <section class="card">
+      <h2>3 · Caption</h2>
+      <label class="row">Text <input type="text" id="inp-caption" value="VICE CITY" maxlength="40"></label>
+      <label class="row">Size <input type="range" id="rng-cap-size" min="48" max="170" step="1" value="110"></label>
+      <label class="row">Position
+        <select id="sel-cap-pos">
+          <option value="bottom" selected>Bottom</option>
+          <option value="top">Top</option>
+        </select>
+      </label>
+      <p class="note">Bold lettering is drawn by the app — no game fonts or artwork are used.</p>
+    </section>
+
+    <p id="status" class="status" aria-live="polite">Ready. Load the sample scene or choose a photo to start.</p>
+  </aside>
+</main>
+
+<footer class="foot">
+  <p>Vice Cover Studio — an original cover maker. No Rockstar Games logos, artwork or fonts. Your photos never leave this machine.</p>
+</footer>
+
+<script src="sample.js"></script>
+<script src="cover.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
